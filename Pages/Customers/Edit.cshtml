@@ -1,0 +1,38 @@
+@page "{id:int}"
+@model ftpms.Pages.Customers.EditModel
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
+<div class="card">
+    <form method="post" class="form-grid">
+        <input type="hidden" asp-for="Id" />
+        <div>
+            <label asp-for="Input.FirstName"></label>
+            <input asp-for="Input.FirstName" />
+            <span class="text-danger" asp-validation-for="Input.FirstName"></span>
+        </div>
+        <div>
+            <label asp-for="Input.LastName"></label>
+            <input asp-for="Input.LastName" />
+            <span class="text-danger" asp-validation-for="Input.LastName"></span>
+        </div>
+        <div>
+            <label asp-for="Input.Email"></label>
+            <input asp-for="Input.Email" />
+            <span class="text-danger" asp-validation-for="Input.Email"></span>
+        </div>
+        <div>
+            <label asp-for="Input.PhoneNumber"></label>
+            <input asp-for="Input.PhoneNumber" />
+        </div>
+        <div>
+            <label asp-for="Input.Address"></label>
+            <input asp-for="Input.Address" />
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

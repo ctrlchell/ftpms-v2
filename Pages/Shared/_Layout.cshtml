@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FTPMS</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="brand">FTPMS</div>
+        <nav>
+            <a asp-page="/Index">Dashboard</a>
+            <a asp-page="/Customers/Index">Customers</a>
+            <a asp-page="/Measurements/Index">Measurements</a>
+            <a asp-page="/Projects/Index">Projects</a>
+            <a asp-page="/Inventory/Index">Inventory</a>
+            <a asp-page="/Payments/Index">Payments</a>
+            <a asp-page="/Reports/Index">Reports</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <header class="topbar">
+            <h1>@ViewData["Title"]</h1>
+            <span>Fashion & Tailoring Project Management</span>
+        </header>
+        <section class="page-content">
+            @RenderBody()
+        </section>
+    </main>
+</div>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

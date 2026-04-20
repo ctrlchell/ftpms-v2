@@ -1,0 +1,37 @@
+@page
+@model ftpms.Pages.Customers.IndexModel
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="card">
+    <div class="actions">
+        <a class="btn btn-primary" asp-page="Create">Add Customer</a>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var customer in Model.Customers)
+        {
+            <tr>
+                <td>@customer.FirstName @customer.LastName</td>
+                <td>@customer.Email</td>
+                <td>@customer.PhoneNumber</td>
+                <td>
+                    <a asp-page="Details" asp-route-id="@customer.Id">Details</a> |
+                    <a asp-page="Edit" asp-route-id="@customer.Id">Edit</a> |
+                    <a asp-page="Delete" asp-route-id="@customer.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
