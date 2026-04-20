@@ -1,0 +1,6 @@
+@ftpms_HostAddress = http://localhost:5211
+
+GET {{ftpms_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
