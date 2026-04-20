@@ -1,0 +1,23 @@
+@page "{id:int}"
+@model ftpms.Pages.Customers.DetailsModel
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<div class="card">
+    @if (Model.Customer is null)
+    {
+        <p>Customer not found.</p>
+    }
+    else
+    {
+        <h2>@Model.Customer.FirstName @Model.Customer.LastName</h2>
+        <p><strong>Email:</strong> @Model.Customer.Email</p>
+        <p><strong>Phone:</strong> @Model.Customer.PhoneNumber</p>
+        <p><strong>Address:</strong> @Model.Customer.Address</p>
+        <div class="actions">
+            <a asp-page="Edit" asp-route-id="@Model.Customer.Id" class="btn btn-primary">Edit</a>
+            <a asp-page="Index" class="btn btn-secondary">Back</a>
+        </div>
+    }
+</div>

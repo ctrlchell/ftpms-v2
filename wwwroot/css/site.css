@@ -1,0 +1,76 @@
+:root {
+    --bg: #f6f8fb;
+    --surface: #ffffff;
+    --border: #dce3ed;
+    --text: #1f2937;
+    --muted: #64748b;
+    --primary: #1d4ed8;
+}
+
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.app-shell { display: flex; min-height: 100vh; }
+.sidebar {
+    width: 220px;
+    background: #0f172a;
+    color: #fff;
+    padding: 1rem;
+}
+.brand { font-weight: 700; margin-bottom: 1rem; }
+.sidebar nav { display: flex; flex-direction: column; gap: .35rem; }
+.sidebar nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: .45rem .6rem;
+    border-radius: .4rem;
+}
+.sidebar nav a:hover { background: #1e293b; color: #fff; }
+
+.main-content { flex: 1; display: flex; flex-direction: column; }
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+}
+.page-content { padding: 1.5rem; }
+
+.placeholder-card, .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: .6rem;
+    padding: 1rem;
+}
+
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: .6rem; border-bottom: 1px solid var(--border); text-align: left; }
+
+.form-grid { display: grid; gap: .75rem; max-width: 650px; }
+input[type='text'], input[type='email'] {
+    width: 100%;
+    padding: .5rem;
+    border-radius: .35rem;
+    border: 1px solid var(--border);
+}
+
+.actions { display: flex; gap: .5rem; margin-top: .7rem; }
+.btn {
+    border: 1px solid transparent;
+    padding: .45rem .75rem;
+    border-radius: .35rem;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-secondary { background: #e2e8f0; color: #111827; }
+.btn-danger { background: #dc2626; color: #fff; }
+.text-danger { color: #b91c1c; }
