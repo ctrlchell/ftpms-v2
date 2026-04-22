@@ -82,7 +82,7 @@ public class MeasurementService(IMeasurementRepository measurementRepository, IC
 
     public async Task<(MeasurementDto? Created, Dictionary<string, List<string>> Errors)> CreateVersionedAsync(MeasurementInputViewModel input, CancellationToken cancellationToken = default)
     {
-        var errors = await ValidateCommonAsync(input, cancellationToken, requireVersion: false);
+        var errors = await ValidateCommonAsync(input, cancellationToken);
         MergeErrors(errors, ValidateByTemplate(input));
 
         if (errors.Count > 0)
@@ -110,7 +110,7 @@ public class MeasurementService(IMeasurementRepository measurementRepository, IC
             return (false, new Dictionary<string, List<string>> { ["Id"] = ["Measurement record not found."] });
         }
 
-        var errors = await ValidateCommonAsync(input, cancellationToken, requireVersion: true);
+        var errors = await ValidateCommonAsync(input, cancellationToken);
         MergeErrors(errors, ValidateByTemplate(input));
 
         if (errors.Count > 0)
@@ -162,7 +162,7 @@ public class MeasurementService(IMeasurementRepository measurementRepository, IC
         return MeasurementTemplateValidation.Validate(input);
     }
 
-    private async Task<Dictionary<string, List<string>>> ValidateCommonAsync(MeasurementInputViewModel input, CancellationToken cancellationToken, bool requireVersion)
+    private async Task<Dictionary<string, List<string>>> ValidateCommonAsync(MeasurementInputViewModel input, CancellationToken cancellationToken)
     {
         var errors = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
 
@@ -189,7 +189,7 @@ public class MeasurementService(IMeasurementRepository measurementRepository, IC
             errors["DateTaken"] = ["Date taken is required."];
         }
 
-        if (requireVersion && input.Version <= 0)
+        if (input.Version <= 0)
         {
             errors["Version"] = ["Version is required."];
         }
