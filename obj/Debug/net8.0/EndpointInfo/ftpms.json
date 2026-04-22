@@ -129,6 +129,174 @@
           }
         }
       }
+    },
+    "/api/measurements/customer/{customerId}": {
+      "get": {
+        "tags": [
+          "MeasurementsApi"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/measurements/{id}": {
+      "get": {
+        "tags": [
+          "MeasurementsApi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MeasurementsApi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MeasurementInputViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MeasurementInputViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MeasurementInputViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MeasurementsApi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/measurements/customer/{customerId}/latest": {
+      "get": {
+        "tags": [
+          "MeasurementsApi"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "templateType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/measurements": {
+      "post": {
+        "tags": [
+          "MeasurementsApi"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MeasurementInputViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MeasurementInputViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MeasurementInputViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -171,12 +339,159 @@
           }
         },
         "additionalProperties": false
+      },
+      "MeasurementInputViewModel": {
+        "required": [
+          "customerId",
+          "dateTaken",
+          "templateType"
+        ],
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "templateType": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "version": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "dateTaken": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "notes": {
+            "maxLength": 1000,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "parentMeasurementId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "chest": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "waist": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "hip": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "shoulder": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "neck": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "sleeveLength": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "armRound": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "wrist": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "bicep": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "topLength": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "trouserLength": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "thigh": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "knee": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "ankle": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "inseam": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "bustPoint": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "underBust": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "roundSleeve": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "gownLength": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "skirtLength": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       }
     }
   },
   "tags": [
     {
       "name": "CustomersApi"
+    },
+    {
+      "name": "MeasurementsApi"
     }
   ]
 }

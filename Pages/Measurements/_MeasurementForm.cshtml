@@ -1,7 +1,4 @@
 @model ftpms.ViewModels.MeasurementInputViewModel
-@{
-    var showSystemFields = (bool?)ViewData["ShowSystemFields"] ?? true;
-}
 
 <div class="row g-3">
     <div class="col-md-3">
@@ -9,16 +6,11 @@
         <input asp-for="DateTaken" type="date" class="form-control" />
         <span asp-validation-for="DateTaken" class="text-danger"></span>
     </div>
-
-    @if (showSystemFields)
-    {
-        <div class="col-md-3">
-            <label asp-for="Version" class="form-label"></label>
-            <input asp-for="Version" class="form-control" readonly />
-            <span asp-validation-for="Version" class="text-danger"></span>
-        </div>
-    }
-
+    <div class="col-md-3">
+        <label asp-for="Version" class="form-label"></label>
+        <input asp-for="Version" class="form-control" readonly />
+        <span asp-validation-for="Version" class="text-danger"></span>
+    </div>
     <div class="col-md-3">
         <label asp-for="IsActive" class="form-label"></label>
         <select asp-for="IsActive" class="form-control">
@@ -26,40 +18,36 @@
             <option value="false">No</option>
         </select>
     </div>
+    <div class="col-md-3">
+        <label asp-for="ParentMeasurementId" class="form-label">Parent Record</label>
+        <input asp-for="ParentMeasurementId" class="form-control" readonly />
+    </div>
 
-    @if (showSystemFields)
-    {
-        <div class="col-md-3">
-            <label asp-for="ParentMeasurementId" class="form-label">Parent Record</label>
-            <input asp-for="ParentMeasurementId" class="form-control" readonly />
-        </div>
-    }
+    <div class="col-12"><hr/><h5>Upper Body</h5></div>
+    <div class="col-md-3"><label asp-for="Chest" class="form-label"></label><input asp-for="Chest" class="form-control" /><span asp-validation-for="Chest" class="text-danger"></span></div>
+    <div class="col-md-3"><label asp-for="Shoulder" class="form-label"></label><input asp-for="Shoulder" class="form-control" /><span asp-validation-for="Shoulder" class="text-danger"></span></div>
+    <div class="col-md-3"><label asp-for="Neck" class="form-label"></label><input asp-for="Neck" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="SleeveLength" class="form-label"></label><input asp-for="SleeveLength" class="form-control" /><span asp-validation-for="SleeveLength" class="text-danger"></span></div>
+    <div class="col-md-3"><label asp-for="ArmRound" class="form-label"></label><input asp-for="ArmRound" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="Wrist" class="form-label"></label><input asp-for="Wrist" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="Bicep" class="form-label"></label><input asp-for="Bicep" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="TopLength" class="form-label"></label><input asp-for="TopLength" class="form-control" /><span asp-validation-for="TopLength" class="text-danger"></span></div>
+    <div class="col-md-3"><label asp-for="RoundSleeve" class="form-label"></label><input asp-for="RoundSleeve" class="form-control" /></div>
 
-    <div class="col-12 measurement-section" data-templates="Suit,Shirt,Agbada,Gown"><hr/><h5>Upper Body</h5></div>
-    <div class="col-md-3 measurement-field" data-field="Chest" data-templates="Suit,Shirt,Agbada,Gown"><label asp-for="Chest" class="form-label"></label><input asp-for="Chest" class="form-control" /><span asp-validation-for="Chest" class="text-danger"></span></div>
-    <div class="col-md-3 measurement-field" data-field="Shoulder" data-templates="Suit,Shirt,Agbada,Gown"><label asp-for="Shoulder" class="form-label"></label><input asp-for="Shoulder" class="form-control" /><span asp-validation-for="Shoulder" class="text-danger"></span></div>
-    <div class="col-md-3 measurement-field" data-field="Neck" data-templates="Suit,Shirt,Agbada"><label asp-for="Neck" class="form-label"></label><input asp-for="Neck" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="SleeveLength" data-templates="Suit,Shirt,Agbada,Gown"><label asp-for="SleeveLength" class="form-label"></label><input asp-for="SleeveLength" class="form-control" /><span asp-validation-for="SleeveLength" class="text-danger"></span></div>
-    <div class="col-md-3 measurement-field" data-field="ArmRound" data-templates="Suit,Shirt,Agbada"><label asp-for="ArmRound" class="form-label"></label><input asp-for="ArmRound" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="Wrist" data-templates="Suit,Shirt,Agbada"><label asp-for="Wrist" class="form-label"></label><input asp-for="Wrist" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="Bicep" data-templates="Suit,Shirt,Agbada"><label asp-for="Bicep" class="form-label"></label><input asp-for="Bicep" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="TopLength" data-templates="Suit,Shirt,Agbada,Gown"><label asp-for="TopLength" class="form-label"></label><input asp-for="TopLength" class="form-control" /><span asp-validation-for="TopLength" class="text-danger"></span></div>
-    <div class="col-md-3 measurement-field" data-field="RoundSleeve" data-templates="Suit,Shirt,Agbada,Gown"><label asp-for="RoundSleeve" class="form-label"></label><input asp-for="RoundSleeve" class="form-control" /></div>
+    <div class="col-12"><hr/><h5>Lower Body</h5></div>
+    <div class="col-md-3"><label asp-for="Waist" class="form-label"></label><input asp-for="Waist" class="form-control" /><span asp-validation-for="Waist" class="text-danger"></span></div>
+    <div class="col-md-3"><label asp-for="Hip" class="form-label"></label><input asp-for="Hip" class="form-control" /><span asp-validation-for="Hip" class="text-danger"></span></div>
+    <div class="col-md-3"><label asp-for="TrouserLength" class="form-label"></label><input asp-for="TrouserLength" class="form-control" /><span asp-validation-for="TrouserLength" class="text-danger"></span></div>
+    <div class="col-md-3"><label asp-for="Thigh" class="form-label"></label><input asp-for="Thigh" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="Knee" class="form-label"></label><input asp-for="Knee" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="Ankle" class="form-label"></label><input asp-for="Ankle" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="Inseam" class="form-label"></label><input asp-for="Inseam" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="SkirtLength" class="form-label"></label><input asp-for="SkirtLength" class="form-control" /><span asp-validation-for="SkirtLength" class="text-danger"></span></div>
 
-    <div class="col-12 measurement-section" data-templates="Trouser,Skirt,Gown"><hr/><h5>Lower Body</h5></div>
-    <div class="col-md-3 measurement-field" data-field="Waist" data-templates="Trouser,Skirt,Gown"><label asp-for="Waist" class="form-label"></label><input asp-for="Waist" class="form-control" /><span asp-validation-for="Waist" class="text-danger"></span></div>
-    <div class="col-md-3 measurement-field" data-field="Hip" data-templates="Trouser,Skirt,Gown"><label asp-for="Hip" class="form-label"></label><input asp-for="Hip" class="form-control" /><span asp-validation-for="Hip" class="text-danger"></span></div>
-    <div class="col-md-3 measurement-field" data-field="TrouserLength" data-templates="Trouser"><label asp-for="TrouserLength" class="form-label"></label><input asp-for="TrouserLength" class="form-control" /><span asp-validation-for="TrouserLength" class="text-danger"></span></div>
-    <div class="col-md-3 measurement-field" data-field="Thigh" data-templates="Trouser"><label asp-for="Thigh" class="form-label"></label><input asp-for="Thigh" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="Knee" data-templates="Trouser"><label asp-for="Knee" class="form-label"></label><input asp-for="Knee" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="Ankle" data-templates="Trouser"><label asp-for="Ankle" class="form-label"></label><input asp-for="Ankle" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="Inseam" data-templates="Trouser"><label asp-for="Inseam" class="form-label"></label><input asp-for="Inseam" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="SkirtLength" data-templates="Skirt"><label asp-for="SkirtLength" class="form-label"></label><input asp-for="SkirtLength" class="form-control" /><span asp-validation-for="SkirtLength" class="text-danger"></span></div>
-
-    <div class="col-12 measurement-section" data-templates="Gown"><hr/><h5>Gown/Bust</h5></div>
-    <div class="col-md-3 measurement-field" data-field="BustPoint" data-templates="Gown"><label asp-for="BustPoint" class="form-label"></label><input asp-for="BustPoint" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="UnderBust" data-templates="Gown"><label asp-for="UnderBust" class="form-label"></label><input asp-for="UnderBust" class="form-control" /></div>
-    <div class="col-md-3 measurement-field" data-field="GownLength" data-templates="Gown"><label asp-for="GownLength" class="form-label"></label><input asp-for="GownLength" class="form-control" /><span asp-validation-for="GownLength" class="text-danger"></span></div>
+    <div class="col-12"><hr/><h5>Gown/Bust</h5></div>
+    <div class="col-md-3"><label asp-for="BustPoint" class="form-label"></label><input asp-for="BustPoint" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="UnderBust" class="form-label"></label><input asp-for="UnderBust" class="form-control" /></div>
+    <div class="col-md-3"><label asp-for="GownLength" class="form-label"></label><input asp-for="GownLength" class="form-control" /><span asp-validation-for="GownLength" class="text-danger"></span></div>
 
     <div class="col-12">
         <label asp-for="Notes" class="form-label"></label>
