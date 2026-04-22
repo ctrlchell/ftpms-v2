@@ -1,0 +1,93 @@
+@page
+@model ftpms.Pages.Measurements.CreateModel
+@{
+    ViewData["Title"] = "Create Measurement";
+    ViewData["ShowSystemFields"] = false;
+}
+
+<div class="card">
+    <h2>Create Measurement</h2>
+
+    @if (Model.IsPrefilled)
+    {
+        <div class="alert alert-info">Prefilled from latest version (v@Model.SourceVersion).</div>
+    }
+
+    <form method="post" id="createMeasurementForm">
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <label asp-for="Input.CustomerId" class="form-label">Customer</label>
+                <select asp-for="Input.CustomerId" asp-items="Model.CustomerOptions" class="form-control">
+                    <option value="">Select customer</option>
+                </select>
+                <span asp-validation-for="Input.CustomerId" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Input.TemplateType" class="form-label">Template Type</label>
+                <select asp-for="Input.TemplateType" asp-items="Model.TemplateOptions" class="form-control" id="templateTypeSelect">
+                    <option value="">Select template</option>
+                </select>
+                <span asp-validation-for="Input.TemplateType" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" asp-page-handler="Reload" class="btn btn-outline-primary">Copy Latest Measurement</button>
+            </div>
+        </div>
+
+        <partial name="_MeasurementForm" model="Model.Input" view-data="ViewData" />
+
+        <div class="mt-3 d-flex gap-2">
+            <button type="submit" class="btn btn-success">Save Measurement</button>
+            <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (function () {
+            const requiredFieldsByTemplate = {
+                Suit: ["Chest", "Shoulder", "SleeveLength", "TopLength"],
+                Shirt: ["Chest", "Shoulder", "SleeveLength", "TopLength"],
+                Trouser: ["Waist", "Hip", "TrouserLength"],
+                Gown: ["Chest", "Waist", "Hip", "GownLength"],
+                Skirt: ["Waist", "Hip", "SkirtLength"],
+                Agbada: ["Chest", "Shoulder", "SleeveLength", "TopLength"]
+            };
+
+            const templateSelect = document.getElementById("templateTypeSelect");
+            if (!templateSelect) {
+                return;
+            }
+
+            function containsTemplate(container, selectedTemplate) {
+                const raw = container.getAttribute("data-templates") || "";
+                const templates = raw.split(",").map(t => t.trim()).filter(Boolean);
+                return templates.includes(selectedTemplate);
+            }
+
+            function toggleByTemplate(selectedTemplate) {
+                document.querySelectorAll(".measurement-field, .measurement-section").forEach(el => {
+                    const show = selectedTemplate && containsTemplate(el, selectedTemplate);
+                    el.style.display = show ? "" : "none";
+                });
+
+                document.querySelectorAll(".measurement-field input, .measurement-field select, .measurement-field textarea").forEach(input => {
+                    input.required = false;
+                });
+
+                const requiredFields = requiredFieldsByTemplate[selectedTemplate] || [];
+                requiredFields.forEach(fieldName => {
+                    const input = document.querySelector(`[name='Input.${fieldName}']`);
+                    if (input) {
+                        input.required = true;
+                    }
+                });
+            }
+
+            toggleByTemplate(templateSelect.value);
+            templateSelect.addEventListener("change", () => toggleByTemplate(templateSelect.value));
+        })();
+    </script>
+}

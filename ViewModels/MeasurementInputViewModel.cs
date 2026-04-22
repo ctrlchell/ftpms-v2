@@ -1,25 +1,25 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ftpms.Models;
+namespace ftpms.ViewModels;
 
-public class Measurement : BaseEntity
+public class MeasurementInputViewModel
 {
+    [Required]
     public int CustomerId { get; set; }
 
     [Required]
     [StringLength(50)]
     public string TemplateType { get; set; } = string.Empty;
 
-    [Range(1, int.MaxValue)]
     public int Version { get; set; }
 
-    public DateTime DateTaken { get; set; }
+    [Required]
+    public DateTime DateTaken { get; set; } = DateTime.UtcNow.Date;
 
     [StringLength(1000)]
     public string? Notes { get; set; }
 
     public bool IsActive { get; set; } = true;
-
     public int? ParentMeasurementId { get; set; }
 
     public decimal? Chest { get; set; }
@@ -42,8 +42,4 @@ public class Measurement : BaseEntity
     public decimal? RoundSleeve { get; set; }
     public decimal? GownLength { get; set; }
     public decimal? SkirtLength { get; set; }
-
-    public Customer? Customer { get; set; }
-    public Measurement? ParentMeasurement { get; set; }
-    public ICollection<Measurement> ChildMeasurements { get; set; } = new List<Measurement>();
 }
