@@ -1,0 +1,50 @@
+@page
+@model ftpms.Pages.Measurements.CreateModel
+@{
+    ViewData["Title"] = "Create Measurement";
+}
+
+<div class="card">
+    <h2>Create Measurement</h2>
+
+    @if (Model.IsPrefilled)
+    {
+        <div class="alert alert-info">Prefilled from latest version (v@Model.SourceVersion).</div>
+    }
+
+    <form method="post" asp-page-handler="Reload" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <label asp-for="Input.CustomerId" class="form-label">Customer</label>
+            <select asp-for="Input.CustomerId" asp-items="Model.CustomerOptions" class="form-control">
+                <option value="">Select customer</option>
+            </select>
+            <span asp-validation-for="Input.CustomerId" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Input.TemplateType" class="form-label">Template Type</label>
+            <select asp-for="Input.TemplateType" asp-items="Model.TemplateOptions" class="form-control">
+                <option value="">Select template</option>
+            </select>
+            <span asp-validation-for="Input.TemplateType" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-outline-primary">Copy Latest Measurement</button>
+        </div>
+    </form>
+
+    <form method="post">
+        <input type="hidden" asp-for="Input.CustomerId" />
+        <input type="hidden" asp-for="Input.TemplateType" />
+
+        <partial name="_MeasurementForm" model="Model.Input" />
+
+        <div class="mt-3 d-flex gap-2">
+            <button type="submit" class="btn btn-success">Save Measurement</button>
+            <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
