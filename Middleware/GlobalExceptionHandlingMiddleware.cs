@@ -3,7 +3,10 @@ using System.Text.Json;
 
 namespace ftpms.Middleware;
 
-public class GlobalExceptionHandlingMiddleware(RequestDelegate next, ILogger<GlobalExceptionHandlingMiddleware> logger)
+public class GlobalExceptionHandlingMiddleware(
+    RequestDelegate next,
+    ILogger<GlobalExceptionHandlingMiddleware> logger,
+    IWebHostEnvironment environment)
 {
     public async Task InvokeAsync(HttpContext context)
     {
@@ -14,6 +17,12 @@ public class GlobalExceptionHandlingMiddleware(RequestDelegate next, ILogger<Glo
         catch (Exception ex)
         {
             logger.LogError(ex, "Unhandled exception occurred.");
+
+            if (environment.IsDevelopment())
+            {
+                throw;
+            }
+
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Response.ContentType = "application/json";
 
