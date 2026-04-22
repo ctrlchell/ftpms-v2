@@ -1,0 +1,81 @@
+[
+  {
+    "ContainingType": "ftpms.APIs.CustomersApiController",
+    "Method": "GetAll",
+    "RelativePath": "api/CustomersApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ftpms.APIs.CustomersApiController",
+    "Method": "Create",
+    "RelativePath": "api/CustomersApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ftpms.ViewModels.CustomerInputViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ftpms.APIs.CustomersApiController",
+    "Method": "GetById",
+    "RelativePath": "api/CustomersApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ftpms.APIs.CustomersApiController",
+    "Method": "Update",
+    "RelativePath": "api/CustomersApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "ftpms.ViewModels.CustomerInputViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ftpms.APIs.CustomersApiController",
+    "Method": "Delete",
+    "RelativePath": "api/CustomersApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
