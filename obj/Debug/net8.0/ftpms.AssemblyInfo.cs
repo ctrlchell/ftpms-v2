@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ftpms")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0000cd4b7618a435bf18722dd0c42167d4d2322")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f39bdf663824e71585e5b2dd3b555f3474cb4f86")]
 [assembly: System.Reflection.AssemblyProductAttribute("ftpms")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ftpms")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
