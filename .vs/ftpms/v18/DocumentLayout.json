@@ -34,21 +34,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MeasurementService.cs",
-              "DocumentMoniker": "C:\\Users\\michy\\source\\repos\\ftpms-v2\\Services\\MeasurementService.cs",
-              "RelativeDocumentMoniker": "Services\\MeasurementService.cs",
-              "ToolTip": "C:\\Users\\michy\\source\\repos\\ftpms-v2\\Services\\MeasurementService.cs",
-              "RelativeToolTip": "Services\\MeasurementService.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAswEMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T08:00:27.065Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
@@ -63,6 +50,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MeasurementService.cs",
+              "DocumentMoniker": "C:\\Users\\michy\\source\\repos\\ftpms-v2\\Services\\MeasurementService.cs",
+              "RelativeDocumentMoniker": "Services\\MeasurementService.cs",
+              "ToolTip": "C:\\Users\\michy\\source\\repos\\ftpms-v2\\Services\\MeasurementService.cs",
+              "RelativeToolTip": "Services\\MeasurementService.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAswEMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T08:00:27.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "CustomerRepository.cs",
               "DocumentMoniker": "C:\\Users\\michy\\source\\repos\\ftpms-v2\\Repositories\\CustomerRepository.cs",
@@ -71,8 +71,7 @@
               "RelativeToolTip": "Repositories\\CustomerRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA4AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T06:43:43.277Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T06:43:43.277Z"
             },
             {
               "$type": "Document",
@@ -84,8 +83,7 @@
               "RelativeToolTip": "Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T06:38:56.172Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T06:38:56.172Z"
             },
             {
               "$type": "Document",
@@ -97,8 +95,7 @@
               "RelativeToolTip": "Migrations\\ApplicationDbContextModelSnapshot.cs",
               "ViewState": "AgIAADMBAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T06:37:48.746Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T06:37:48.746Z"
             },
             {
               "$type": "Document",
@@ -110,8 +107,7 @@
               "RelativeToolTip": "ftpms.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2026-04-22T06:17:48.402Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T06:17:48.402Z"
             },
             {
               "$type": "Document",
@@ -123,8 +119,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAgwCEAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T14:33:05.418Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T14:33:05.418Z"
             }
           ]
         }
