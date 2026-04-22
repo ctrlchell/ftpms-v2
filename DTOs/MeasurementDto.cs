@@ -1,25 +1,15 @@
-using System.ComponentModel.DataAnnotations;
+namespace ftpms.DTOs;
 
-namespace ftpms.Models;
-
-public class Measurement : BaseEntity
+public class MeasurementDto
 {
+    public int Id { get; set; }
     public int CustomerId { get; set; }
-
-    [Required]
-    [StringLength(50)]
+    public string CustomerName { get; set; } = string.Empty;
     public string TemplateType { get; set; } = string.Empty;
-
-    [Range(1, int.MaxValue)]
     public int Version { get; set; }
-
     public DateTime DateTaken { get; set; }
-
-    [StringLength(1000)]
     public string? Notes { get; set; }
-
-    public bool IsActive { get; set; } = true;
-
+    public bool IsActive { get; set; }
     public int? ParentMeasurementId { get; set; }
 
     public decimal? Chest { get; set; }
@@ -42,8 +32,4 @@ public class Measurement : BaseEntity
     public decimal? RoundSleeve { get; set; }
     public decimal? GownLength { get; set; }
     public decimal? SkirtLength { get; set; }
-
-    public Customer? Customer { get; set; }
-    public Measurement? ParentMeasurement { get; set; }
-    public ICollection<Measurement> ChildMeasurements { get; set; } = new List<Measurement>();
 }
