@@ -53,8 +53,8 @@ public class MeasurementRepository(ApplicationDbContext dbContext) : IMeasuremen
         return dbContext.Measurements
             .AsNoTracking()
             .Where(m => m.CustomerId == customerId && m.TemplateType == templateType)
-            .OrderByDescending(m => m.DateTaken)
-            .ThenByDescending(m => m.Id)
+            .OrderByDescending(m => m.Version)
+            .ThenByDescending(m => m.DateTaken)
             .FirstOrDefaultAsync(cancellationToken);
     }
 

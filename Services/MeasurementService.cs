@@ -52,6 +52,7 @@ public class MeasurementService(IMeasurementRepository measurementRepository, IC
 
     public async Task<MeasurementPrefillDto> PreparePrefilledCreateModelAsync(int customerId, string templateType, CancellationToken cancellationToken = default)
     {
+        var nextVersion = await measurementRepository.GetNextVersionAsync(customerId, templateType, cancellationToken);
         var latest = await measurementRepository.GetLatestAsync(customerId, templateType, cancellationToken);
 
         var model = latest is null
@@ -59,15 +60,15 @@ public class MeasurementService(IMeasurementRepository measurementRepository, IC
             {
                 CustomerId = customerId,
                 TemplateType = templateType,
-                Version = 1,
+                Version = nextVersion,
                 DateTaken = DateTime.UtcNow.Date,
                 IsActive = true
             }
             : MapToInput(latest);
 
-        model.Version = 1;
+        model.Version = nextVersion;
         model.DateTaken = DateTime.UtcNow.Date;
-        model.ParentMeasurementId = null;
+        model.ParentMeasurementId = latest?.Id;
         model.IsActive = true;
 
         return new MeasurementPrefillDto
@@ -89,8 +90,7 @@ public class MeasurementService(IMeasurementRepository measurementRepository, IC
             return (null, errors);
         }
 
-        input.Version = 1;
-        input.ParentMeasurementId = null;
+        input.Version = await measurementRepository.GetNextVersionAsync(input.CustomerId, input.TemplateType, cancellationToken);
 
         var measurement = MapToEntity(input);
         measurement.CreatedAtUtc = DateTime.UtcNow;
@@ -120,9 +120,11 @@ public class MeasurementService(IMeasurementRepository measurementRepository, IC
 
         existing.CustomerId = input.CustomerId;
         existing.TemplateType = input.TemplateType;
+        existing.Version = input.Version;
         existing.DateTaken = input.DateTaken;
         existing.Notes = input.Notes;
         existing.IsActive = input.IsActive;
+        existing.ParentMeasurementId = input.ParentMeasurementId;
 
         existing.Chest = input.Chest;
         existing.Waist = input.Waist;
@@ -181,14 +183,15 @@ public class MeasurementService(IMeasurementRepository measurementRepository, IC
         {
             errors["TemplateType"] = ["Template type is required."];
         }
-        else if (!MeasurementTemplates.All.Contains(input.TemplateType, StringComparer.OrdinalIgnoreCase))
-        {
-            errors["TemplateType"] = ["Template type is invalid."];
-        }
 
         if (input.DateTaken == default)
         {
             errors["DateTaken"] = ["Date taken is required."];
+        }
+
+        if (input.Version <= 0)
+        {
+            errors["Version"] = ["Version is required."];
         }
 
         return errors;

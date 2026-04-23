@@ -37,6 +37,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.Property(x => x.TemplateType).HasMaxLength(50).IsRequired();
             entity.Property(x => x.Notes).HasMaxLength(1000);
 
+            entity.HasIndex(x => new { x.CustomerId, x.TemplateType, x.Version }).IsUnique();
 
             entity.HasOne(x => x.ParentMeasurement)
                 .WithMany(x => x.ChildMeasurements)
