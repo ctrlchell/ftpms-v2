@@ -11,6 +11,7 @@ public class MeasurementInputViewModel
     [StringLength(50)]
     public string TemplateType { get; set; } = string.Empty;
 
+    [Range(1, int.MaxValue)]
     public int Version { get; set; }
 
     [Required]

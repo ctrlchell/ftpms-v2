@@ -24,21 +24,11 @@ public class CreateModel(IMeasurementService measurementService, ICustomerServic
 
     public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
     {
-        if (CustomerId.HasValue)
-        {
-            Input.CustomerId = CustomerId.Value;
-        }
-
-        if (!string.IsNullOrWhiteSpace(TemplateType))
-        {
-            Input.TemplateType = TemplateType;
-        }
-
         await LoadSelectionsAsync(cancellationToken);
 
-        if (Input.CustomerId > 0 && !string.IsNullOrWhiteSpace(Input.TemplateType))
+        if (CustomerId.HasValue && !string.IsNullOrWhiteSpace(TemplateType))
         {
-            var prefill = await measurementService.PreparePrefilledCreateModelAsync(Input.CustomerId, Input.TemplateType, cancellationToken);
+            var prefill = await measurementService.PreparePrefilledCreateModelAsync(CustomerId.Value, TemplateType, cancellationToken);
             Input = prefill.Model;
             IsPrefilled = prefill.IsPrefilled;
             SourceVersion = prefill.SourceVersion;
@@ -46,10 +36,10 @@ public class CreateModel(IMeasurementService measurementService, ICustomerServic
         else
         {
             Input.DateTaken = DateTime.UtcNow.Date;
+            Input.Version = 1;
             Input.IsActive = true;
         }
 
-        await LoadSelectionsAsync(cancellationToken);
         return Page();
     }
 
