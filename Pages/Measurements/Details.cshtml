@@ -1,0 +1,42 @@
+@page "{id:int}"
+@model ftpms.Pages.Measurements.DetailsModel
+@{
+    ViewData["Title"] = "Measurement Details";
+}
+
+<div class="card">
+    @if (Model.Measurement is null)
+    {
+        <p>Measurement not found.</p>
+    }
+    else
+    {
+        <h2>Measurement Details</h2>
+        <p><strong>Customer:</strong> @Model.Measurement.CustomerName</p>
+        <p><strong>Template:</strong> @Model.Measurement.TemplateType</p>
+        <p><strong>Version:</strong> @Model.Measurement.Version</p>
+        <p><strong>Date Taken:</strong> @Model.Measurement.DateTaken.ToString("yyyy-MM-dd")</p>
+        <p><strong>Parent Record:</strong> @(Model.Measurement.ParentMeasurementId?.ToString() ?? "N/A")</p>
+        <p><strong>Notes:</strong> @(string.IsNullOrWhiteSpace(Model.Measurement.Notes) ? "-" : Model.Measurement.Notes)</p>
+
+        <h5>Measurements</h5>
+        <dl class="row">
+            <dt class="col-sm-3">Chest</dt><dd class="col-sm-3">@Model.Measurement.Chest</dd>
+            <dt class="col-sm-3">Waist</dt><dd class="col-sm-3">@Model.Measurement.Waist</dd>
+            <dt class="col-sm-3">Hip</dt><dd class="col-sm-3">@Model.Measurement.Hip</dd>
+            <dt class="col-sm-3">Shoulder</dt><dd class="col-sm-3">@Model.Measurement.Shoulder</dd>
+            <dt class="col-sm-3">Sleeve Length</dt><dd class="col-sm-3">@Model.Measurement.SleeveLength</dd>
+            <dt class="col-sm-3">Top Length</dt><dd class="col-sm-3">@Model.Measurement.TopLength</dd>
+            <dt class="col-sm-3">Trouser Length</dt><dd class="col-sm-3">@Model.Measurement.TrouserLength</dd>
+            <dt class="col-sm-3">Gown Length</dt><dd class="col-sm-3">@Model.Measurement.GownLength</dd>
+            <dt class="col-sm-3">Skirt Length</dt><dd class="col-sm-3">@Model.Measurement.SkirtLength</dd>
+        </dl>
+
+        <div class="actions">
+            <a asp-page="Edit" asp-route-id="@Model.Measurement.Id" class="btn btn-primary">Edit</a>
+            <a asp-page="Delete" asp-route-id="@Model.Measurement.Id" class="btn btn-danger">Delete</a>
+            <a asp-page="History" asp-route-customerId="@Model.Measurement.CustomerId" asp-route-templateType="@Model.Measurement.TemplateType" class="btn btn-outline-secondary">View History</a>
+            <a asp-page="Index" class="btn btn-secondary">Back</a>
+        </div>
+    }
+</div>
